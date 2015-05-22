@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Salesforce Lead Form Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.2.2/css/foundation.min.css">
+	<link rel="stylesheet" href="http://parsleyjs.org/src/parsley.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/1.2.3/parsley.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/garlic.js/1.2.2/garlic.min.js"></script>
+  </head>
+  <body>
+<div align="center">
+        <form name="leadform" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" data-persist="garlic" parsley-validate>
+            <input type=hidden name="oid" value="YOURORGID">
+            <input type=hidden name="retURL" value="http://www.example.com">
+            <table>
+                <tr>
+                    <td>
+                        <label for="first_name">First Name</label>
+                    </td>
+                    <td align='right'>
+                        <input id="first_name" maxlength="40" name="first_name" size="20" type="text" parsley-required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="last_name">Last Name</label>
+                    </td>
+                    <td align='right'>
+                        <input id="last_name" maxlength="80" name="last_name" size="20" type="text" parsley-required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="street">Street</label>
+                    </td>
+                    <td align='right'>
+                        <input id="street" maxlength="80" name="street" size="20" type="text" parsley-required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="city">City</label>
+                    </td>
+                    <td align='right'>
+                        <input id="city" maxlength="40" name="city" size="20" type="text" parsley-required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="state">State/Province</label>
+                    </td>
+                    <td align='right'>
+						<select id="state" name="state" title="state" parsley-required="true">
+							<option value="">--None--</option>
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="AZ">Arizona</option>
+							<option value="AR">Arkansas</option>
+							<option value="CA">California</option>
+							<option value="CO">Colorado</option>
+							<option value="CT">Connecticut</option>
+							<option value="DE">Delaware</option>
+							<option value="DC">District Of Columbia</option>
+							<option value="FL">Florida</option>
+							<option value="GA">Georgia</option>
+							<option value="HI">Hawaii</option>
+							<option value="ID">Idaho</option>
+							<option value="IL">Illinois</option>
+							<option value="IN">Indiana</option>
+							<option value="IA">Iowa</option>
+							<option value="KS">Kansas</option>
+							<option value="KY">Kentucky</option>
+							<option value="LA">Louisiana</option>
+							<option value="ME">Maine</option>
+							<option value="MD">Maryland</option>
+							<option value="MA">Massachusetts</option>
+							<option value="MI">Michigan</option>
+							<option value="MN">Minnesota</option>
+							<option value="MS">Mississippi</option>
+							<option value="MO">Missouri</option>
+							<option value="MT">Montana</option>
+							<option value="NE">Nebraska</option>
+							<option value="NV">Nevada</option>
+							<option value="NH">New Hampshire</option>
+							<option value="NJ">New Jersey</option>
+							<option value="NM">New Mexico</option>
+							<option value="NY">New York</option>
+							<option value="NC">North Carolina</option>
+							<option value="ND">North Dakota</option>
+							<option value="OH">Ohio</option>
+							<option value="OK">Oklahoma</option>
+							<option value="OR">Oregon</option>
+							<option value="PA">Pennsylvania</option>
+							<option value="RI">Rhode Island</option>
+							<option value="SC">South Carolina</option>
+							<option value="SD">South Dakota</option>
+							<option value="TN">Tennessee</option>
+							<option value="TX">Texas</option>
+							<option value="UT">Utah</option>
+							<option value="VT">Vermont</option>
+							<option value="VA">Virginia</option>
+							<option value="WA">Washington</option>
+							<option value="WV">West Virginia</option>
+							<option value="WI">Wisconsin</option>
+							<option value="WY">Wyoming</option>
+						</select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="zip">Zip</label>
+                    </td>
+                    <td align='right'>
+                        <input id="zip" maxlength="20" name="zip" size="20" type="text" parsley-rangelength="[5,10]" parsley-required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="phone">Phone</label>
+                    </td>
+                    <td align='right'>
+                        <input id="phone" maxlength="40" name="phone" size="15" type="tel" parsley-type="phone" parsley-required="true" parsley-regexp="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email</label>
+                    </td>
+                    <td align='right'>
+                        <input id="email" maxlength="80" name="email" size="20" type="text" parsley-type="email" />
+                    </td>
+                </tr>
+            </table>
+			<input type="submit" name="submit" class="small round button">
+        </form>
+    </div>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation.min.js"></script>
+    <script>
+	$(document).foundation();
+    </script>
+  </body>
+</html>
