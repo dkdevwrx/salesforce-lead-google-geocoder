@@ -1,6 +1,8 @@
 # salesforce-lead-zurb
 Uses ZURB Foundation with a Salesforce Lead form
 
+Adds Google geocoder when the form loads.
+
 Also added ParsleyJS validation to require fields to be filled in with 'parsley-required="true"' on each input and make sure phone and email are in acceptable formats..
 
 This is great for mobile lead collection (door-to-door) with a smartphone.
