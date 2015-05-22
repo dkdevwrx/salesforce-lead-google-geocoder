@@ -11,13 +11,26 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/1.2.3/parsley.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/garlic.js/1.2.2/garlic.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script>
+var geocoder;
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+}
+</script>
   </head>
-  <body>
+<body onload="getLocation();initialize();">
 <div align="center">
         <form name="leadform" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" data-persist="garlic" parsley-validate>
             <input type=hidden name="oid" value="YOURORGID">
             <input type=hidden name="retURL" value="http://www.example.com">
             <table>
+				<tr>
+					<td align="center" colspan="2">
+						<div id="coords">Getting your location</div>
+					</td>
+				</tr>
                 <tr>
                     <td>
                         <label for="first_name">First Name</label>
@@ -143,6 +156,53 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.1/js/foundation.min.js"></script>
     <script>
 	$(document).foundation();
+	
+var coordsdiv = document.getElementById("coords");
+var lat;
+var lng;
+
+function getLocation() {
+
+    if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition,error,geo_options);
+    } 
+		else {
+            coordsdiv.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function error(error) {
+ alert("Unable to retrieve your location due to "+error.code + " : " + error.message);
+}
+ 
+var geo_options = {
+ enableHighAccuracy: true,
+ maximumAge : 30000
+}
+
+function showPosition(position) {
+            coordsdiv.innerHTML = 'Got your location!<br><button class="small round button" onclick="window.location.reload();">Refresh Location?</button>';
+			   lat = position.coords.latitude;
+			   lng = position.coords.longitude;
+			   
+var latlng = new google.maps.LatLng(lat, lng);
+  geocoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+	  var address = results[0].formatted_address.split(",");
+	  var zipstate = address[2].split(" ");
+		document.getElementById("street").value = address[0];;
+		document.getElementById("city").value = address[1];
+		document.getElementById("state").value = zipstate[1];
+		document.getElementById("zip").value = zipstate[2];		
+      } else {
+        alert('No results found');
+      }
+    } else {
+      alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
     </script>
   </body>
 </html>
