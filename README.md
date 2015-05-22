@@ -12,3 +12,5 @@ Form is automatically mobile-friendly due to ZURB Foundation, fits any screen ou
 All libraries are from CDNJS (Thanks CloudFlare!) so everything works out of the 1 index.html file.
 
 Location may not work from the local file. For Chrome, make a shortcut and add this to the end of the Target line:  --allow-file-access-from-files
+
+Sample at http://dkdevwrx.github.io/salesforce-lead-google-geocoder.
